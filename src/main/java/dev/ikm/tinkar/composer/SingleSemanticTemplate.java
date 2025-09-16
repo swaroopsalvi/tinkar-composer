@@ -13,14 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-module dev.ikm.tinkar.composer {
-    requires dev.ikm.tinkar.common;
-    requires dev.ikm.tinkar.terms;
-    requires dev.ikm.tinkar.entity;
-    requires org.eclipse.collections.api;
-    requires org.eclipse.collections.impl;
-    requires org.slf4j;
-    exports dev.ikm.tinkar.composer;
-    exports dev.ikm.tinkar.composer.template;
-    exports dev.ikm.tinkar.composer.assembler;
+package dev.ikm.tinkar.composer;
+
+import dev.ikm.tinkar.common.id.PublicIds;
+import dev.ikm.tinkar.terms.EntityProxy.Semantic;
+
+public abstract class SingleSemanticTemplate extends SemanticTemplate {
+
+    @Override
+    protected Semantic defaultSemantic() {
+        return Semantic.make(PublicIds.singleSemanticId(assignPattern().publicId(), getReference().publicId()));
+    }
+
 }
